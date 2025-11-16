@@ -1,35 +1,41 @@
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
-int main() {
+int main(){
     char str1[100], str2[100];
-    int i, giongNhau = 1;
+    char c1, c2;
+    int i;
     
-    printf("Nhap chuoi thu nhat: ");
+    printf("Nhap chuoi 1: ");
     fgets(str1, sizeof(str1), stdin);
     str1[strcspn(str1, "\n")] = 0;
     
-    printf("Nhap chuoi thu hai: ");
+    printf("Nhap chuoi 2: ");
     fgets(str2, sizeof(str2), stdin);
-    str2[strcspn(str2, "\n")] = 0;
+    str2[strcspn(str2, "\n")] = 0;  
     
-    if(strlen(str1) != strlen(str2)) {
-        giongNhau = 0;
-    } else {
-        for(i = 0; str1[i] != '\0'; i++) {
-            if(tolower(str1[i]) != tolower(str2[i])) {
-                giongNhau = 0;
-                break;
-            }
+    if(strlen(str1) != strlen(str2)){
+        printf("Khac nhau");
+        return 0;
+    }
+    
+    for(i = 0; str1[i] != '\0'; i++){
+        c1 = str1[i];
+        c2 = str2[i];
+        
+        if(c1 >= 'A' && c1 <= 'Z'){
+            c1 += 32;
+        }
+        if(c2 >= 'A' && c2 <= 'Z'){
+            c2 += 32;
+        }
+        
+        if(c1 != c2){
+            printf("Khac nhau");
+            return 0;
         }
     }
     
-    if(giongNhau) {
-        printf("Giong nhau");
-    } else {
-        printf("Khac nhau");
-    }
-    
+    printf("Giong nhau");
     return 0;
 }
